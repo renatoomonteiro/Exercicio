@@ -4,7 +4,7 @@ function getListaUsuario() {
     
     requisicaoAssincrona("POST", "../Usuario/GetListaUsuario", "", sucessoGetUser, erroGetUser)
 
-    /*teste*/
+    /*Teste de Commit*/
 
 
 }
