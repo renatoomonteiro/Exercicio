@@ -2,12 +2,94 @@
 @{
     ViewBag.Title = "GerenciarUsuario";
     Layout = "~/Views/Shared/_LayoutSistema.cshtml";
-}   
+}
 
 <h2>Gerenciar Usuário</h2>
 
-<div id="cardUsuario">
 
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div id="cardUsuario">
+
+        </div>
+    </div>
+
+    <div id="formEditarUsuario" hidden="hidden" class="col-lg-12">
+
+        <!-- Form horizontal -->
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                @*<h5 class="panel-title">Basic form inputs</h5>*@
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li><a data-action="reload"></a></li>
+                        <li><a data-action="close"></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                @*<legend class="text-bold">Edição das informações do Usuário</legend>*@
+
+                <form class="form-horizontal" action="#">
+                    <fieldset class="content-group">
+                        <legend class="text-bold">Editar Usuário</legend>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Nome Completo</label>
+                            <div class="col-lg-10">
+                                <input id="txtNomeCompletoEdit" type="text" class="form-control">
+                            </div>
+                        </div> 
+                        
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Data de Nascimento</label>
+                            <div class="col-lg-10">
+                                <input id="txtDataNascimentoEdit" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Sexo</label>
+                            <div class="col-lg-10">
+                                <input id="txtSexoEdit" type="text" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">E-mail</label>
+                            <div class="col-lg-10">
+                                <input id="txtEmailEdit" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Endereço</label>
+                            <div class="col-lg-10">
+                                <input id="txtEnderecoEdit" type="text" class="form-control">
+                            </div>
+                        </div>
+
+
+
+
+                    </fieldset>
+
+                    <div class="text-right">
+                                                                                            
+                        <button type="reset" class="btn btn-danger">Cancelar <i class="icon-cancel-circle2 position-right "></i></button>
+                        <button type="submit" class="btn btn-primary">Confirmar <i class="icon-arrow-right14 position-right"></i></button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /form horizontal -->
+    </div>
 </div>
 
 <script src="~/Scripts/MeusScripts/AdmGerenciarUsuario.js"></script>

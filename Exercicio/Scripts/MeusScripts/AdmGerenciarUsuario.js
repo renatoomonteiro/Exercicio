@@ -3,10 +3,6 @@
 function getListaUsuario() {
     
     requisicaoAssincrona("POST", "../Usuario/GetListaUsuario", "", sucessoGetUser, erroGetUser)
-
-    /*Teste de Commit com proxy*/
-
-
 }
 
 function sucessoGetUser(json) {
@@ -43,8 +39,8 @@ function sucessoGetUser(json) {
             "                    </a>                                                                                                                                           " +
             "                                                                                                                                                                   " +
             "                    <ul class='dropdown-menu dropdown-menu-right'>                                                                                                 " +
-            "                        <li><a href='#'><i class='icon-comment-discussion pull-right'></i>Editar</a></li>                                                     " +
-            "                        <li onclick = 'deletarUsuario("+_id+")'><a href='#'><i class='icon-phone2 pull-right'></i>Excluir</a></li>                                                                " +
+            "                        <li onclick = 'editarUsuario(" + _id + ")' ><a href='#'><i class='icon-pen pull-right'></i>Editar</a></li>                                                     " +
+            "                        <li onclick = 'deletarUsuario(" + _id + ")'><a href='#'><i class='icon-backspace pull-right'></i>Excluir</a></li>                                                                " +
             //"                        <li><a href='#'><i class='icon-mail5 pull-right'></i> Send mail</a></li>                                                                   " +
             //"                        <li class='divider'></li>                                                                                                                  " +
             //"                        <li><a href='#'><i class='icon-statistics pull-right'></i> Statistics</a></li>                                                             " +
@@ -82,7 +78,7 @@ function deletarUsuario(id) {
 
 function sucessoDeletar(json) {
 
-    alert(json.retDelete)
+    swal("Opa...", "Deu certo!", "success");
     getListaUsuario();
 }
 
@@ -90,6 +86,9 @@ function erroDeletar(json) {
     alert("Deu errado!")
 }
 
-function editarUsuario(id) {
-    alert("Editar " + id)
+function editarUsuario() {
+
+    $("#formEditarUsuario").show("slow")
+    
 }
+

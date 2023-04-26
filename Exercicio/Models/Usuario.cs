@@ -15,6 +15,10 @@ namespace Exercicio.Models
         public string senha{ get; set; }
         public string email{ get; set; }
         public string flag{ get; set; }
+        public string sexo { get; set; }
+        public string endereco { get; set; }
+        public string dtNascimento { get; set; }
+
     } 
     
     public class DadosId
