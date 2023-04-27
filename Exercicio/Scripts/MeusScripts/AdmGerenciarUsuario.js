@@ -78,7 +78,7 @@ function deletarUsuario(id) {
 
 function sucessoDeletar(json) {
 
-    swal("Opa...", "Deu certo!", "success");
+    swal("Apagado", "O usuário " + json.retDelete + " foi removido com sucesso!", "success");
     getListaUsuario();
 }
 
@@ -92,3 +92,106 @@ function editarUsuario() {
     
 }
 
+//Funções de edição do usuário
+function editarCamposUsuario() {
+
+    var nomeCompletoEdit = $("#txtNomeCompletoEdit").val();
+    var dataNascimentoEdit = $("#txtDataNascimentoEdit").val();
+    var sexoEdit = $("#txtSexoEdit").val();
+    var emailEdit = $("#txtEmailEdit").val();
+    var enderecoEdit = $("#txtEnderecoEdit").val();
+
+    var prosseguir = validarCamposEdit(nomeCompletoEdit, dataNascimentoEdit, sexoEdit, emailEdit, enderecoEdit);
+
+    if (prosseguir) {
+
+        var objEditUsuario = {
+
+            nome: nomeCompletoEdit,
+            dtNascimento: dataNascimentoEdit,
+            sexo: sexoEdit,
+            email: emailEdit,
+            endereco: enderecoEdit,
+            flag: "1"
+        }
+
+        requisicaoAssincrona("POST", "../Home/EditarUsuario", objEditUsuario, sucessoCamposUsuario, erroCamposUsuario)
+
+    }
+
+}
+
+function sucessoCamposUsuario(json) {
+    var objRet = json;
+
+    if (objRet.ret == "ok") {
+        //Tratar o erro
+        recoherCamposEdit();
+
+        window.location.assign("/")
+    } else {
+        //alert(objRet.ret);
+        //limparCampos();
+
+        //window.location.assign("/")
+    }
+}
+
+function erroCamposUsuario(json) {
+    alert("Tudo deu errado!")
+}
+
+function validarCamposEdit(nomeCompletoEdit, dataNascimentoEdit, sexoEdit, emailEdit, enderecoEdit) {
+    var continuar = false;
+
+    if (nomeCompletoEdit != "") {
+        continuar = true;
+    } else {
+        continuar = false;
+        alert("Preencha o seu nome completo!");
+    }
+
+    if (dataNascimentoEdit != "") {
+        continuar = true;
+    } else {
+        continuar = false;
+        alert("Preencha a sua data de nascimento!");
+    }
+
+    if (sexoEdit != "") {
+        continuar = true;
+    } else {
+        continuar = false;
+        alert("Preencha o sexo!");
+    }
+
+    if (emailEdit != "") {
+        continuar = true;
+    } else {
+        continuar = false;
+        alert("Preencha o e-mail!");
+    }
+
+    if (enderecoEdit != "") {
+        continuar = true;
+    } else {
+        continuar = false;
+        alert("Preencha o endereço!");
+    }
+
+    return continuar;
+}
+
+//function limparCamposEdit() {
+//    //Capturar o valor = .val("");
+//    $("#txtNomeCompletoEdit").val("");
+//    $("#txtDataNascimentoEdit").val("");
+//    $("#txtSexoEdit").val("");
+//    $("#txtEmailEdit").val("");
+//    $("#txtEnderecoEdit").val();
+
+//}
+
+function recoherCamposEdit() {
+    $("#formEditarUsuario").hide("slow");
+}

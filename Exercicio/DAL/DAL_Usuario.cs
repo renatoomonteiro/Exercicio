@@ -104,6 +104,7 @@ namespace Exercicio.DAL
                 var filtro = Builders<Usuario>.Filter.Where(u => u._id == ObjectId.Parse(id.indice));
                 
                 Usuario _user = colecao.Find(filtro).FirstOrDefault();
+                
 
                 if (_user != null)
                 {
@@ -124,5 +125,40 @@ namespace Exercicio.DAL
             }
         }
 
+        public string EditarUsuario(DadosId id)
+        {
+            try
+            {
+                string conexaoMongoDB = ConfigurationManager.ConnectionStrings["conexaoMongoDB"].ConnectionString;
+                var client = new MongoClient(conexaoMongoDB);
+                var db = client.GetDatabase("EXERCICIO");
+                IMongoCollection<Usuario> colecao = db.GetCollection<Usuario>("usuario");
+                var filtro = Builders<Usuario>.Filter.Where(u => u._id == ObjectId.Parse(id.indice));
+
+                Usuario _user = colecao.Find(filtro).FirstOrDefault();
+                
+
+                if (_user != null)
+                {
+                    //Editar para Atualizar na coleção
+
+                    
+                    _user.flag = "0";                    
+                    ReplaceOneResult result = colecao.ReplaceOne(filtro, _user);
+                    return _user.nome;
+                }
+
+                else
+                {
+                    return "Erro!";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+    }
     }
 }

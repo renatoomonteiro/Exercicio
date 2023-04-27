@@ -36,6 +36,12 @@ namespace Exercicio.BLL
             var retorno = _dalUser.DeletarUsuario(id);
             return retorno; 
         }
-            
+
+        public string EditarUsuario(DadosId id)
+        {
+            var retorno = _dalUser.EditarUsuario(id);
+
+            return retorno;
+        }
     }
 }

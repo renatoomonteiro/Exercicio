@@ -25,7 +25,6 @@ function cadastrarUsuario() {
 
 }
 
-
 function sucessoCadastro(json) {
     var objRet = json;
 
@@ -80,7 +79,6 @@ function validarCamposCad(nome, senha, repSenha, email) {
     return continuar;
 }
 
-
 function limparCampos() {
     //Capturar o valor = .val("");
     $("#txtUsuarioCadLogin").val("");
@@ -122,6 +120,7 @@ function validarCampos() {
     }
        
 }
+
 function sucessoLogin(json) {
     var objUser = json.user;
 
@@ -135,7 +134,6 @@ function erroLogin(json) {
 
 
 }
-
 
 function validarCamposLogin(nomeLogin, senhaLogin) {
     var continuar = false;

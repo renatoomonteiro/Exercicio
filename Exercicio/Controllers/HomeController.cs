@@ -61,5 +61,19 @@ namespace Exercicio.Controllers
             });
         }
 
+        [HttpPost]
+        public ActionResult EditarUsuario(DadosId id)
+        {
+
+            BLL_Usuario _bllUser = new BLL_Usuario();
+
+            var retorno = _bllUser.EditarUsuario(id);
+
+            return Json(new
+            {
+                ret = retorno
+            });
+        }
+
     }
 }
