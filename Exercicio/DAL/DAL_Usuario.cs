@@ -125,7 +125,8 @@ namespace Exercicio.DAL
             }
         }
 
-        public string EditarUsuario(DadosId id)
+
+        public string EditarUsuario(string IdEdit, string nome, string email, string sexo, string endereco, string dtNascimento, string flag)
         {
             try
             {
@@ -133,17 +134,19 @@ namespace Exercicio.DAL
                 var client = new MongoClient(conexaoMongoDB);
                 var db = client.GetDatabase("EXERCICIO");
                 IMongoCollection<Usuario> colecao = db.GetCollection<Usuario>("usuario");
-                var filtro = Builders<Usuario>.Filter.Where(u => u._id == ObjectId.Parse(id.indice));
+                var filtro = Builders<Usuario>.Filter.Where(u => u._id == ObjectId.Parse(IdEdit));
 
                 Usuario _user = colecao.Find(filtro).FirstOrDefault();
-                
 
                 if (_user != null)
                 {
-                    //Editar para Atualizar na coleção
+                    _user.nome = nome;
+                    _user.email = email;
+                    _user.endereco = endereco;
+                    _user.dtNascimento = dtNascimento;
+                    _user.sexo = sexo;
+                    _user.flag = flag;
 
-                    
-                    _user.flag = "0";                    
                     ReplaceOneResult result = colecao.ReplaceOne(filtro, _user);
                     return _user.nome;
                 }
@@ -159,6 +162,7 @@ namespace Exercicio.DAL
                 return ex.Message;
             }
         }
+
     }
     }
-}
+

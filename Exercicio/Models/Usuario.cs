@@ -18,6 +18,7 @@ namespace Exercicio.Models
         public string sexo { get; set; }
         public string endereco { get; set; }
         public string dtNascimento { get; set; }
+        //public string IdEdit { get; set; }
 
     } 
     

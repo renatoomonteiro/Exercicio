@@ -37,9 +37,9 @@ namespace Exercicio.BLL
             return retorno; 
         }
 
-        public string EditarUsuario(DadosId id)
+        public string EditarUsuario(string IdEdit, string nome, string email, string sexo, string endereco, string dtNascimento, string flag)
         {
-            var retorno = _dalUser.EditarUsuario(id);
+            var retorno = _dalUser.EditarUsuario(IdEdit, nome, email, sexo, endereco, dtNascimento, flag);
 
             return retorno;
         }

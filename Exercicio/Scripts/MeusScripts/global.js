@@ -16,3 +16,21 @@
         }
     });
 }
+
+function msgErro(texto) {
+    new swal({
+        title: "ATENÇÃO",
+        text:texto,
+        icon: "error"
+          
+    });
+}
+
+function msgSucesso(texto) {
+    new swal({
+        title: "Tudo Certo",
+        text: texto,
+        icon: "success"
+
+    });
+}

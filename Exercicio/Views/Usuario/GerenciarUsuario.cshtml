@@ -39,17 +39,19 @@
                     <fieldset class="content-group">
                         <legend class="text-bold">Editar Usuário</legend>
 
+                        <input id="IdEdit" type="text" hidden="hidden">
+
                         <div class="form-group">
                             <label class="control-label col-lg-2">Nome Completo</label>
                             <div class="col-lg-10">
                                 <input id="txtNomeCompletoEdit" type="text" class="form-control">
                             </div>
-                        </div> 
-                        
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-lg-2">Data de Nascimento</label>
                             <div class="col-lg-10">
-                                <input id="txtDataNascimentoEdit" type="text" class="form-control">
+                                <input id="txtDataNascimentoEdit" type="date" class="form-control">
                             </div>
                         </div>
 
@@ -59,11 +61,11 @@
                                 <input id="txtSexoEdit" type="text" class="form-control">
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="control-label col-lg-2">E-mail</label>
                             <div class="col-lg-10">
-                                <input id="txtEmailEdit" type="text" class="form-control">
+                                <input id="txtEmailEdit" type="email" class="form-control">
                             </div>
                         </div>
 
@@ -80,9 +82,9 @@
                     </fieldset>
 
                     <div class="text-right">
-                        @*<input id="btnRegistrarLogin" type="button" class="btn bg-indigo-400 btn-block" value="Registar" onclick="cadastrarUsuario()" />*@                                                                   
-                        <input id="btnCancelarEdicao" type="button" class="btn btn-danger" value="Cancelar" onclick="">
-                        <input id="btnConfirmarEdicao" type="button" class="btn btn-primary" value="Confirmar" onclick="editarCamposUsuario()" >
+                        @*<input id="btnRegistrarLogin" type="button" class="btn bg-indigo-400 btn-block" value="Registar" onclick="cadastrarUsuario()" />*@
+                        <input id="btnCancelarEdicao" type="button" class="btn btn-danger" value="Cancelar" onclick="recolherCamposEdit()">
+                        <input id="btnConfirmarEdicao" type="button" class="btn btn-primary" value="Confirmar" onclick="editarUsuario()">
 
                     </div>
                 </form>
@@ -93,3 +95,4 @@
 </div>
 
 <script src="~/Scripts/MeusScripts/AdmGerenciarUsuario.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mongodb@4.1.1/bson.browser.js"></script>

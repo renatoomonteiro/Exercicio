@@ -16,6 +16,8 @@ function sucessoGetUser(json) {
     $.each(objListarUsuario, function(i, obj) {
 
         var _id = JSON.stringify(obj._id);
+        var nome = JSON.stringify(obj.nome);
+        var email = JSON.stringify(obj.email);
 
         var conteudo =
             "<div class='panel panel-body col-md-3																																" +
@@ -39,7 +41,7 @@ function sucessoGetUser(json) {
             "                    </a>                                                                                                                                           " +
             "                                                                                                                                                                   " +
             "                    <ul class='dropdown-menu dropdown-menu-right'>                                                                                                 " +
-            "                        <li onclick = 'editarUsuario(" + _id + ")' ><a href='#'><i class='icon-pen pull-right'></i>Editar</a></li>                                                     " +
+            "                        <li onclick = 'AbrirFormEdicao(" + _id + " , " + nome + " , " + email + " )' ><a href='#'><i class='icon-pen pull-right'></i>Editar</a></li>                                                     " +
             "                        <li onclick = 'deletarUsuario(" + _id + ")'><a href='#'><i class='icon-backspace pull-right'></i>Excluir</a></li>                                                                " +
             //"                        <li><a href='#'><i class='icon-mail5 pull-right'></i> Send mail</a></li>                                                                   " +
             //"                        <li class='divider'></li>                                                                                                                  " +
@@ -73,24 +75,110 @@ function deletarUsuario(id) {
         requisicaoAssincrona("POST", "../Usuario/DeletarUsuario", dados, sucessoDeletar, erroDeletar)
 
     }
-
 }
 
 function sucessoDeletar(json) {
 
-    swal("Apagado", "O usuário " + json.retDelete + " foi removido com sucesso!", "success");
+    msgSucesso("O usuário " + json.retDelete + " foi removido com sucesso!");
+
+    //swal("Apagado", "O usuário " + json.retDelete + " foi removido com sucesso!", "success");
+    //getListaUsuario();
+
+    //swal({
+    //    title: "Aviso:",
+    //    text: "Deseja realmente excluir o usuário " + json.retDelete + "?",
+    //    type: "warning",
+    //    showCancelButton: true,
+    //    confirmButtonColor: "#66BB6A",
+    //    cancelButtonColor: '#d33',
+    //    confirmButtonText: "Sim",
+    //    cancelButtonText: "Não",
+    //    closeOnConfirm: true,
+    //    closeOnCancel: true
+    //})
+
+    //Swal.fire({
+    //    title: 'Do you want to save the changes?',
+    //    showDenyButton: true,
+    //    showCancelButton: true,
+    //    confirmButtonText: 'Save',
+    //    denyButtonText: `Don't save`,
+    //}).then((result) => {
+    //    /* Read more about isConfirmed, isDenied below */
+    //    if (result.isConfirmed) {
+    //        Swal.fire('Saved!', '', 'success')
+    //    } else if (result.isDenied) {
+    //        Swal.fire('Changes are not saved', '', 'info')
+    //    }
+    //})
+
     getListaUsuario();
 }
+
+
 
 function erroDeletar(json) {
     alert("Deu errado!")
 }
 
-function editarUsuario() {
+function AbrirFormEdicao(id, nome, email) {
+    $("#formEditarUsuario").show("slow");
+    $("#IdEdit").val(id);
+    $("#txtNomeCompletoEdit").val(nome);
+    $("#txtEmailEdit").val(email);
 
     $("#formEditarUsuario").show("slow")
+}
+
+//const { ObjectId } = require('mongodb');
+
+//function convertToObjectId(str) {
+//    /* Verifica se a string é um formato válido*/
+//    if (/^[0-9a-fA-F]{24}$/.test(str)) {
+//        return { $oid: str };
+//    }
+//    return null;
+//}
+
+function editarUsuario() {
+
+    //var _id = JSON.stringify(obj._id);
+
+    var objUsuarioEdit = {
+
+        //IdEdit: new ObjectId($("#IdEdit").val()),
+
+        //IdEdit: convertToObjectId($("#IdEdit").val()),
+
+        IdEdit: $("#IdEdit").val(),        
+        nome: $("#txtNomeCompletoEdit").val(),
+        email: $("#txtEmailEdit").val(),
+        sexo: $("#txtSexoEdit").val(),
+        endereco: $("#txtEnderecoEdit").val(),
+        dtNascimento: $("#txtDataNascimentoEdit").val(),
+        flag: "1"
+    }
+
+    requisicaoAssincrona("POST", "../Usuario/EditarUsuario", objUsuarioEdit, sucessoEdit, erroEdit)
+
+    $("#formEditarUsuario").hide("slow")
+
+}
+
+function sucessoEdit(json) {
+    
+    msgSucesso("O usuário " + json.retDelete + " foi alterado com sucesso!");
+    getListaUsuario();
+    //swal("Atualizado", "O usuário " + json.retDelete + " foi alterado com sucesso!", "success");
     
 }
+
+function erroEdit(json) {
+
+}
+
+//$("#formEditarUsuario").show("slow")
+//$("#IdEdit").val(id)
 
 //Funções de edição do usuário
 function editarCamposUsuario() {
@@ -115,7 +203,7 @@ function editarCamposUsuario() {
             flag: "1"
         }
 
-        requisicaoAssincrona("POST", "../Home/EditarUsuario", objEditUsuario, sucessoCamposUsuario, erroCamposUsuario)
+        requisicaoAssincrona("POST", "../Home/EditarUsuario", objEditUsuario, sucessoCamposUsuario, erroCamposUsuario);
 
     }
 
@@ -192,6 +280,6 @@ function validarCamposEdit(nomeCompletoEdit, dataNascimentoEdit, sexoEdit, email
 
 //}
 
-function recoherCamposEdit() {
+function recolherCamposEdit() {
     $("#formEditarUsuario").hide("slow");
 }

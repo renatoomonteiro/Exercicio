@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Exercicio.Controllers
@@ -62,12 +63,12 @@ namespace Exercicio.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarUsuario(DadosId id)
+        public ActionResult EditarUsuario(string IdEdit, string nome, string email, string sexo, string endereco, string dtNascimento, string flag)
         {
 
             BLL_Usuario _bllUser = new BLL_Usuario();
 
-            var retorno = _bllUser.EditarUsuario(id);
+            var retorno = _bllUser.EditarUsuario(IdEdit, nome, email, sexo, endereco, dtNascimento, flag);
 
             return Json(new
             {
