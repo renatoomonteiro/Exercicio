@@ -29,8 +29,7 @@ function msgErro(texto) {
 function msgSucesso(texto) {
     new swal({
         title: "Tudo Certo",
-        text: texto,
+        text: texto, 
         icon: "success"
-
     });
 }

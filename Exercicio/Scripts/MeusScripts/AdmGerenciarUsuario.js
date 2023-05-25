@@ -17,14 +17,17 @@ function sucessoGetUser(json) {
 
         var _id = JSON.stringify(obj._id);
         var nome = JSON.stringify(obj.nome);
+        var dtNascimento = JSON.stringify(obj.dtNascimento);
+        var sexo = JSON.stringify(obj.sexo);
         var email = JSON.stringify(obj.email);
+        var endereco = JSON.stringify(obj.endereco);
 
         var conteudo =
             "<div class='panel panel-body col-md-3																																" +
             "    <div class='media'>                                                                                                                                            " +
             "        <div class='media-left'>                                                                                                                                   " +
             "            <a href='assets/images/placeholder.jpg'>                                                                                                               " +
-            "                <img src='https://img2.gratispng.com/20180518/rbi/kisspng-user-computer-icons-symbol-5aff29c27daa60.7927792015266718105147.jpg' class='img-circle img-lg' alt=''>        " +
+            "                <img src='../Imagens/perfil.jpg' class='img-circle img-lg' alt=''>        " +
             "            </a>                                                                                                                                                   " +
             "        </div>                                                                                                                                                     " +
             "                                                                                                                                                                   " +
@@ -41,7 +44,7 @@ function sucessoGetUser(json) {
             "                    </a>                                                                                                                                           " +
             "                                                                                                                                                                   " +
             "                    <ul class='dropdown-menu dropdown-menu-right'>                                                                                                 " +
-            "                        <li onclick = 'AbrirFormEdicao(" + _id + " , " + nome + " , " + email + " )' ><a href='#'><i class='icon-pen pull-right'></i>Editar</a></li>                                                     " +
+            "                        <li onclick = 'AbrirFormEdicao(" + _id + " , " + nome + " , " + dtNascimento + " , " + sexo + " , " + email + " , " + endereco +")' ><a href='#'><i class='icon-pen pull-right'></i>Editar</a></li>                                                     " +
             "                        <li onclick = 'deletarUsuario(" + _id + ")'><a href='#'><i class='icon-backspace pull-right'></i>Excluir</a></li>                                                                " +
             //"                        <li><a href='#'><i class='icon-mail5 pull-right'></i> Send mail</a></li>                                                                   " +
             //"                        <li class='divider'></li>                                                                                                                  " +
@@ -121,11 +124,15 @@ function erroDeletar(json) {
     alert("Deu errado!")
 }
 
-function AbrirFormEdicao(id, nome, email) {
+function AbrirFormEdicao(id, nome, dtNascimento, sexo, email, endereco) {
     $("#formEditarUsuario").show("slow");
     $("#IdEdit").val(id);
+
     $("#txtNomeCompletoEdit").val(nome);
+    $("#txtDataNascimentoEdit").val(dtNascimento);
+    $("#txtSexoEdit").val(sexo);
     $("#txtEmailEdit").val(email);
+    $("#txtEnderecoEdit").val(endereco);
 
     $("#formEditarUsuario").show("slow")
 }
@@ -170,11 +177,11 @@ function sucessoEdit(json) {
     msgSucesso("O usuário " + json.retDelete + " foi alterado com sucesso!");
     getListaUsuario();
     //swal("Atualizado", "O usuário " + json.retDelete + " foi alterado com sucesso!", "success");
-    
+    //getListaUsuario();
 }
 
 function erroEdit(json) {
-
+    msgErro("O usuário " + json.retDelete + " não pode ser atualizado!")
 }
 
 //$("#formEditarUsuario").show("slow")
