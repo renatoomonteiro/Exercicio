@@ -21,6 +21,8 @@ function sucessoGetUser(json) {
         var sexo = JSON.stringify(obj.sexo);
         var email = JSON.stringify(obj.email);
         var endereco = JSON.stringify(obj.endereco);
+        //var perfil = JSON.stringify(obj.perfil);
+        
 
         var conteudo =
             "<div class='panel panel-body col-md-3																																" +
@@ -44,7 +46,7 @@ function sucessoGetUser(json) {
             "                    </a>                                                                                                                                           " +
             "                                                                                                                                                                   " +
             "                    <ul class='dropdown-menu dropdown-menu-right'>                                                                                                 " +
-            "                        <li onclick = 'AbrirFormEdicao(" + _id + " , " + nome + " , " + dtNascimento + " , " + sexo + " , " + email + " , " + endereco +")' ><a href='#'><i class='icon-pen pull-right'></i>Editar</a></li>                                                     " +
+            "                        <li onclick = 'AbrirFormEdicao(" + _id + " , " + nome + " , " + dtNascimento + " , " + sexo + " , " + email + " , " + endereco + ", " + perfil + ")' ><a href='#'><i class='icon-pen pull-right'></i>Editar</a></li>                                                     " +
             "                        <li onclick = 'deletarUsuario(" + _id + ")'><a href='#'><i class='icon-backspace pull-right'></i>Excluir</a></li>                                                                " +
             //"                        <li><a href='#'><i class='icon-mail5 pull-right'></i> Send mail</a></li>                                                                   " +
             //"                        <li class='divider'></li>                                                                                                                  " +
@@ -124,7 +126,7 @@ function erroDeletar(json) {
     alert("Deu errado!")
 }
 
-function AbrirFormEdicao(id, nome, dtNascimento, sexo, email, endereco) {
+function AbrirFormEdicao(id, nome, dtNascimento, sexo, email, endereco, perfil) {
     $("#formEditarUsuario").show("slow");
     $("#IdEdit").val(id);
 
@@ -133,6 +135,7 @@ function AbrirFormEdicao(id, nome, dtNascimento, sexo, email, endereco) {
     $("#txtSexoEdit").val(sexo);
     $("#txtEmailEdit").val(email);
     $("#txtEnderecoEdit").val(endereco);
+    $('#imagemPerfil').val(perfil)
 
     $("#formEditarUsuario").show("slow")
 }
@@ -163,6 +166,7 @@ function editarUsuario() {
         sexo: $("#txtSexoEdit").val(),
         endereco: $("#txtEnderecoEdit").val(),
         dtNascimento: $("#txtDataNascimentoEdit").val(),
+        perfil: $("imagemPerfil").val(),
         flag: "1"
     }
 

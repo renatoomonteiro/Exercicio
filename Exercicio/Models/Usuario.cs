@@ -27,4 +27,11 @@ namespace Exercicio.Models
        public string indice { get; set; }  
        
     }
+
+    public class Imagem
+    {
+        public ObjectId Id { get; set; }
+        public byte[] Dados { get; set; }
+    }
+
 }
