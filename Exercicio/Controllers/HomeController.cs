@@ -122,7 +122,7 @@ namespace Exercicio.Controllers
         public ActionResult ShowImage(string id)
         {
             //Obtem a imagem com o ID especifico
-            var image = _collection.Find(x => x.Id == ObjectId.Parse(id)).FirstOrDefault();
+            var image = _collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefault();
 
             if (image != null)
             {
